@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>PAR | Photography by Paniz Rafaghati</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Home */
+        .home {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            background: #111;
+            overflow: hidden;
+        }
+
+        /* Slideshow */
+        .slide {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            transition: opacity 1.5s ease-in-out;
+        }
+
+        .slide.active {
+            opacity: 1;
+        }
+
+        /* Dark overlay */
+        .overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.18);
+            z-index: 2;
+        }
+
+        /* Navigation */
+        nav {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 28px 45px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            z-index: 10;
+        }
+
+        /* Logo */
+        .logo {
+            color: white;
+            font-size: 32px;
+            font-weight: 400;
+            text-decoration: none;
+        }
+
+        /* Menu */
+        .menu {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .menu a {
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+            letter-spacing: 1px;
+            transition: opacity 0.3s ease;
+        }
+
+        .menu a:hover {
+            opacity: 0.55;
+        }
+
+        /* Mobile */
+        @media (max-width: 700px) {
+
+            nav {
+                padding: 22px 20px;
+            }
+
+            .logo {
+                font-size: 27px;
+            }
+
+            .menu {
+                gap: 14px;
+            }
+
+            .menu a {
+                font-size: 11px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <main class="home">
+
+        <!-- Navigation -->
+        <nav>
+            <a href="#" class="logo">پر</a>
+
+            <ul class="menu">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Theater</a></li>
+                <li><a href="#">Project</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+
+
+        <!-- Slideshow -->
+        <img src="images/home1.jpg" class="slide active" alt="Paniz Rafaghati Photography">
+        <img src="images/home2.jpg" class="slide" alt="Paniz Rafaghati Photography">
+        <img src="images/home3.jpg" class="slide" alt="Paniz Rafaghati Photography">
+        <img src="images/home4.jpg" class="slide" alt="Paniz Rafaghati Photography">
+        <img src="images/home5.jpg" class="slide" alt="Paniz Rafaghati Photography">
+
+        <div class="overlay"></div>
+
+    </main>
+
+
+    <script>
+
+        const slides = document.querySelectorAll(".slide");
+
+        let currentSlide = 0;
+
+        function nextSlide() {
+
+            slides[currentSlide].classList.remove("active");
+
+            currentSlide = (currentSlide + 1) % slides.length;
+
+            slides[currentSlide].classList.add("active");
+        }
+
+        // Change image every 5 seconds
+        setInterval(nextSlide, 5000);
+
+    </script>
+
+</body>
+</html>
