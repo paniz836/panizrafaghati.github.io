@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>PAR | Photography by Paniz Rafaghati</title>
 
     <style>
@@ -15,17 +16,23 @@
 
         html, body {
             width: 100%;
-            height: 100%;
-            overflow: hidden;
+            min-height: 100%;
             font-family: Arial, Helvetica, sans-serif;
             background: #000;
+        }
+
+        body {
+            overflow: hidden;
         }
 
         .home {
             position: relative;
             width: 100%;
             height: 100vh;
+            height: 100svh;
+            min-height: 500px;
             overflow: hidden;
+            background: #000;
         }
 
         .slideshow {
@@ -38,7 +45,8 @@
             position: absolute;
             inset: 0;
             background-size: cover;
-            background-position: center;
+            background-position: center center;
+            background-repeat: no-repeat;
             opacity: 0;
             transition: opacity 1.5s ease-in-out;
         }
@@ -59,15 +67,21 @@
             top: 0;
             left: 0;
             width: 100%;
-            padding: 30px 5%;
+            padding: clamp(20px, 3vw, 35px) 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            gap: 25px;
             z-index: 10;
         }
 
+        .logo {
+            display: block;
+            flex-shrink: 0;
+        }
+
         .logo img {
-            width: 90px;
+            width: clamp(65px, 7vw, 90px);
             height: auto;
             display: block;
         }
@@ -75,15 +89,18 @@
         nav {
             display: flex;
             align-items: center;
-            gap: 30px;
+            justify-content: flex-end;
+            gap: clamp(15px, 2.5vw, 30px);
+            flex-wrap: wrap;
         }
 
         nav a {
             color: white;
             text-decoration: none;
-            font-size: 13px;
-            letter-spacing: 1.5px;
+            font-size: clamp(10px, 1vw, 13px);
+            letter-spacing: 1.2px;
             text-transform: uppercase;
+            white-space: nowrap;
             transition: opacity 0.3s ease;
         }
 
@@ -91,26 +108,107 @@
             opacity: 0.6;
         }
 
-        @media (max-width: 700px) {
-            header {
-                padding: 22px 5%;
-                align-items: flex-start;
-            }
+        /* Medium screens */
 
-            .logo img {
-                width: 65px;
+        @media (max-width: 900px) {
+            header {
+                padding: 25px 4%;
+                gap: 18px;
             }
 
             nav {
-                gap: 12px;
-                flex-wrap: wrap;
-                justify-content: flex-end;
-                max-width: 75%;
+                gap: 17px;
             }
 
             nav a {
-                font-size: 10px;
+                font-size: 11px;
+                letter-spacing: 0.7px;
+            }
+        }
+
+        /* Mobile screens */
+
+        @media (max-width: 600px) {
+            .home {
+                min-height: 480px;
+            }
+
+            header {
+                padding: 20px 5%;
+                align-items: flex-start;
+                gap: 12px;
+            }
+
+            .logo img {
+                width: 62px;
+            }
+
+            nav {
+                display: grid;
+                grid-template-columns: repeat(3, auto);
+                justify-content: end;
+                gap: 15px 13px;
+                max-width: calc(100% - 75px);
+                padding-top: 5px;
+            }
+
+            nav a {
+                font-size: 9px;
                 letter-spacing: 0.5px;
+                text-align: center;
+            }
+
+            .slide {
+                background-position: center center;
+            }
+
+            .overlay {
+                background: rgba(0, 0, 0, 0.3);
+            }
+        }
+
+        /* Very small phones */
+
+        @media (max-width: 360px) {
+            header {
+                padding: 16px 4%;
+                gap: 8px;
+            }
+
+            .logo img {
+                width: 52px;
+            }
+
+            nav {
+                gap: 12px 9px;
+                max-width: calc(100% - 60px);
+            }
+
+            nav a {
+                font-size: 8px;
+                letter-spacing: 0.3px;
+            }
+        }
+
+        /* Landscape phones */
+
+        @media (max-width: 900px) and (orientation: landscape) {
+            header {
+                padding: 12px 4%;
+            }
+
+            .logo img {
+                width: 55px;
+            }
+
+            nav {
+                gap: 15px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .slide {
+                transition: none;
             }
         }
     </style>
@@ -131,6 +229,7 @@
         <div class="overlay"></div>
 
         <header>
+
             <a class="logo" href="index.html">
                 <img src="logo.png" alt="PAR Logo">
             </a>
@@ -142,6 +241,7 @@
                 <a href="about.html">About</a>
                 <a href="https://paniz836.github.io/panizrafaghati.github.io/contact.html">Contact</a>
             </nav>
+
         </header>
 
     </main>
@@ -150,13 +250,15 @@
         const slides = document.querySelectorAll('.slide');
         let currentSlide = 0;
 
-        setInterval(() => {
-            slides[currentSlide].classList.remove('active');
+        if (slides.length > 1) {
+            setInterval(() => {
+                slides[currentSlide].classList.remove('active');
 
-            currentSlide = (currentSlide + 1) % slides.length;
+                currentSlide = (currentSlide + 1) % slides.length;
 
-            slides[currentSlide].classList.add('active');
-        }, 3000);
+                slides[currentSlide].classList.add('active');
+            }, 3000);
+        }
     </script>
 
 </body>
