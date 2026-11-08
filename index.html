@@ -22,6 +22,8 @@
             background: #000;
         }
 
+        /* Main page */
+
         .home {
             position: relative;
             width: 100%;
@@ -30,6 +32,8 @@
             overflow: hidden;
             background: #000;
         }
+
+        /* Slideshow */
 
         .slideshow {
             position: absolute;
@@ -42,6 +46,7 @@
             inset: 0;
             background-size: cover;
             background-position: center;
+            background-repeat: no-repeat;
             opacity: 0;
             transition: opacity 1.5s ease-in-out;
         }
@@ -56,6 +61,8 @@
             background: rgba(0, 0, 0, 0.25);
             z-index: 2;
         }
+
+        /* Header */
 
         header {
             position: absolute;
@@ -74,6 +81,8 @@
             height: auto;
             display: block;
         }
+
+        /* Navigation */
 
         nav {
             display: flex;
@@ -96,7 +105,7 @@
             opacity: 0.6;
         }
 
-        /* Mobile layout */
+        /* MOBILE */
 
         @media (max-width: 700px) {
 
@@ -107,23 +116,28 @@
                 background: #000;
             }
 
+            /* Top black bar */
+
             header {
                 position: relative;
                 top: auto;
                 left: auto;
+                order: 0;
                 flex: 0 0 auto;
                 width: 100%;
                 padding: 12px 4%;
-                min-height: 0;
-                gap: 8px;
                 background: #000;
+                display: flex;
                 justify-content: space-between;
                 align-items: center;
+                gap: 8px;
             }
 
             .logo img {
-                width: clamp(38px, 11vw, 58px);
+                width: clamp(38px, 10vw, 58px);
             }
+
+            /* One-line menu */
 
             nav {
                 display: flex;
@@ -141,27 +155,34 @@
                 white-space: nowrap;
             }
 
+            /* Full-width photo area */
+
             .slideshow {
                 position: relative;
                 inset: auto;
+                order: 1;
                 width: 100%;
-                height: auto;
-                aspect-ratio: 3 / 2;
+                aspect-ratio: 16 / 9;
                 flex: 0 0 auto;
                 background: #000;
             }
 
             .slide {
+                position: absolute;
                 inset: 0;
                 background-size: contain;
                 background-position: center;
                 background-repeat: no-repeat;
             }
 
+            /* Keep the black areas clean */
+
             .overlay {
                 display: none;
             }
         }
+
+        /* VERY SMALL PHONES */
 
         @media (max-width: 360px) {
 
@@ -182,11 +203,8 @@
                 font-size: 7px;
                 letter-spacing: -0.2px;
             }
-
-            .slideshow {
-                aspect-ratio: 3 / 2;
-            }
         }
+
     </style>
 </head>
 
