@@ -9,7 +9,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Vazirmatn:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=Vazirmatn:wght@300;400;500;600&display=swap" rel="stylesheet">
 
 <style>
 * {
@@ -44,29 +44,34 @@ body {
 }
 
 .logo {
-    width: 65px;
-    height: 65px;
+    width: 75px;
+    height: 75px;
     object-fit: contain;
     filter: brightness(0);
 }
 
+/* MENU BUTTON */
+
 .menu-button {
     width: 34px;
     height: 30px;
+    padding: 4px 2px;
     border: none;
     background: transparent;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    gap: 6px;
+    justify-content: space-between;
+    align-items: center;
     cursor: pointer;
 }
 
 .menu-button span {
-    width: 28px;
-    height: 1.5px;
-    background: #111;
     display: block;
+    width: 28px;
+    height: 2px;
+    min-height: 2px;
+    background: #111;
+    border-radius: 2px;
 }
 
 /* MENU */
@@ -78,8 +83,8 @@ body {
     right: 15px;
     left: 15px;
     background: #fff;
-    border: 1px solid #ddd;
-    padding: 22px 15px;
+    border: 1px solid #ccc;
+    padding: 8px 18px;
     z-index: 20;
 }
 
@@ -89,35 +94,52 @@ body {
 
 .menu-panel nav {
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
     justify-content: center;
-    align-items: center;
-    gap: 17px;
+    align-items: stretch;
 }
 
 .menu-panel a {
+    display: block;
+    width: 100%;
+    padding: 13px 8px;
     color: #111;
     text-decoration: none;
-    font-size: 12px;
-    font-weight: 400;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.2px;
+    border-bottom: 1px solid #ddd;
+}
+
+.menu-panel a:last-child {
+    border-bottom: none;
 }
 
 /* PHOTO SLIDESHOW */
 
 .slideshow {
+    display: block;
     width: 100%;
     aspect-ratio: 3 / 2;
     position: relative;
     overflow: hidden;
+    isolation: isolate;
     background: #fff;
+    z-index: 0;
 }
 
 .slide {
     position: absolute;
-    inset: 0;
+    top: 0;
+    left: 0;
+    display: block;
     width: 100%;
     height: 100%;
+    max-width: 100%;
+    max-height: 100%;
     object-fit: contain;
+    object-position: center center;
     opacity: 0;
     transition: opacity 1.2s ease;
 }
@@ -154,12 +176,12 @@ body {
 .about .role {
     font-size: 13px;
     font-weight: 400;
-    margin-bottom: 25px;
+    margin-bottom: 20px;
 }
 
 .about p {
     font-size: 13px;
-    line-height: 2;
+    line-height: 1.8;
     font-weight: 300;
 }
 
@@ -167,7 +189,7 @@ body {
     width: 100%;
     height: 1px;
     background: #bbb;
-    margin: 35px 0;
+    margin: 27px 0;
 }
 
 .about-persian h2 {
@@ -233,17 +255,40 @@ body {
 /* MOBILE */
 
 @media (max-width: 600px) {
+
     .header {
         height: 75px;
-        padding: 10px 18px;
+        padding: 8px 18px;
     }
 
     .logo {
-        width: 58px;
-        height: 58px;
+        width: 66px;
+        height: 66px;
+    }
+
+    .menu-button {
+        width: 34px;
+        height: 28px;
+    }
+
+    .menu-button span {
+        width: 28px;
+        height: 2px;
+    }
+
+    .menu-panel {
+        top: 68px;
+        right: 12px;
+        left: 12px;
+    }
+
+    .menu-panel a {
+        font-size: 14px;
+        padding: 13px 8px;
     }
 
     .slideshow {
+        width: 100%;
         aspect-ratio: 3 / 2;
     }
 
@@ -257,15 +302,15 @@ body {
 
     .about p {
         font-size: 12px;
-        line-height: 2;
+        line-height: 1.8;
     }
 
     .about .role {
-        margin-bottom: 20px;
+        margin-bottom: 17px;
     }
 
     .about-divider {
-        margin: 30px 0;
+        margin: 24px 0;
     }
 
     .connect {
@@ -283,7 +328,8 @@ body {
 
     <img src="par-logo.png" alt="PAR Logo" class="logo">
 
-    <button class="menu-button" id="menuButton" aria-label="Open menu">
+    <button class="menu-button" id="menuButton"
+            aria-label="Open menu" aria-expanded="false">
         <span></span>
         <span></span>
         <span></span>
@@ -420,19 +466,22 @@ const menuButton = document.getElementById("menuButton");
 const menuPanel = document.getElementById("menuPanel");
 
 menuButton.addEventListener("click", function () {
-    menuPanel.classList.toggle("open");
+    const isOpen = menuPanel.classList.toggle("open");
+    menuButton.setAttribute("aria-expanded", isOpen);
 });
 
 document.addEventListener("click", function (event) {
     if (!menuButton.contains(event.target) &&
         !menuPanel.contains(event.target)) {
         menuPanel.classList.remove("open");
+        menuButton.setAttribute("aria-expanded", "false");
     }
 });
 
 menuPanel.querySelectorAll("a").forEach(function (link) {
     link.addEventListener("click", function () {
         menuPanel.classList.remove("open");
+        menuButton.setAttribute("aria-expanded", "false");
     });
 });
 
