@@ -24,13 +24,15 @@ body {
     color: #111;
 }
 
+/* HEADER */
+
 header {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    height: 68px;
-    padding: 0 30px;
+    height: 85px;
+    padding: 15px 22px;
     background: #fff;
     display: flex;
     align-items: center;
@@ -39,56 +41,75 @@ header {
 }
 
 .logo img {
-    width: 43px;
-    height: auto;
+    width: 75px;
+    height: 75px;
+    object-fit: contain;
+    filter: brightness(0);
     display: block;
 }
 
 .menu-button {
-    width: 28px;
+    width: 34px;
+    height: 30px;
+    padding: 4px 2px;
     cursor: pointer;
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .menu-button span {
     display: block;
-    width: 100%;
-    height: 1.5px;
+    width: 28px;
+    height: 2px;
     background: #111;
+    border-radius: 2px;
 }
 
 .menu {
     display: none;
     position: absolute;
-    top: 68px;
-    right: 30px;
-    background: white;
-    border: 1px solid #ddd;
-    padding: 18px 25px;
-    min-width: 190px;
-}
-
-.menu a {
-    display: block;
-    text-decoration: none;
-    color: #111;
-    font-family: "DM Sans", sans-serif;
-    font-size: 14px;
-    font-weight: 600;
-    padding: 10px 0;
+    top: 75px;
+    right: 15px;
+    left: 15px;
+    background: #fff;
+    border: 1px solid #ccc;
+    padding: 8px 18px;
+    z-index: 20;
 }
 
 .menu.show {
     display: block;
 }
 
+.menu a {
+    display: block;
+    width: 100%;
+    text-decoration: none;
+    color: #111;
+    text-align: center;
+    font-family: "DM Sans", sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.2px;
+    padding: 13px 8px;
+    border-bottom: 1px solid #ddd;
+}
+
+.menu a:last-child {
+    border-bottom: none;
+}
+
+/* MAIN */
+
 main {
     max-width: 1500px;
     margin: 0 auto;
     padding: 112px 28px 100px;
 }
+
+/* TITLE */
 
 h1 {
     font-family: "DM Sans", sans-serif;
@@ -104,6 +125,8 @@ h1 {
     background: #111;
     margin: 17px auto 42px;
 }
+
+/* GALLERY */
 
 .gallery {
     display: grid;
@@ -142,6 +165,8 @@ h1 {
     letter-spacing: 0.2px;
 }
 
+/* FOOTER */
+
 footer {
     position: fixed;
     bottom: 0;
@@ -162,19 +187,34 @@ footer p {
     font-weight: 400;
 }
 
+/* MOBILE */
+
 @media (max-width: 600px) {
+
     header {
-        height: 60px;
-        padding: 0 18px;
+        height: 75px;
+        padding: 8px 18px;
     }
 
     .logo img {
-        width: 40px;
+        width: 66px;
+        height: 66px;
+    }
+
+    .menu-button {
+        width: 34px;
+        height: 28px;
+    }
+
+    .menu-button span {
+        width: 28px;
+        height: 2px;
     }
 
     .menu {
-        top: 60px;
-        right: 18px;
+        top: 68px;
+        right: 12px;
+        left: 12px;
     }
 
     main {
@@ -267,4 +307,3 @@ function toggleMenu() {
 
 </body>
 </html>
-
