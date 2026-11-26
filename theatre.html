@@ -1,0 +1,286 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Theater Collection | PAR</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #fff;
+    color: #111;
+    font-family: Georgia, "Times New Roman", serif;
+}
+
+/* FIXED HEADER */
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 58px;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 24px;
+    z-index: 100;
+}
+
+.logo img {
+    width: 38px;
+    height: 38px;
+    object-fit: contain;
+    filter: brightness(0);
+}
+
+.menu-button {
+    width: 22px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.menu-button span {
+    width: 100%;
+    height: 1.5px;
+    background: #111;
+}
+
+.menu {
+    display: none;
+    position: absolute;
+    top: 58px;
+    right: 20px;
+    width: 210px;
+    background: white;
+    border: 1px solid #ddd;
+    padding: 12px 18px;
+}
+
+.menu.open {
+    display: block;
+}
+
+.menu a {
+    display: block;
+    color: #111;
+    text-decoration: none;
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+    font-weight: bold;
+    padding: 12px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+.menu a:last-child {
+    border-bottom: none;
+}
+
+/* PAGE CONTENT */
+
+main {
+    padding: 94px 16px 100px;
+}
+
+.page-title {
+    text-align: center;
+    margin-bottom: 27px;
+}
+
+.page-title h1 {
+    font-size: 21px;
+    font-weight: normal;
+}
+
+.page-title div {
+    width: 70px;
+    height: 1px;
+    background: #111;
+    margin: 10px auto 0;
+}
+
+/* GALLERY */
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    column-gap: 15px;
+    row-gap: 58px;
+}
+
+.work {
+    min-width: 0;
+}
+
+.work-image {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    border: 1px solid #222;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: white;
+}
+
+.work-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.work h2 {
+    font-size: 17px;
+    font-weight: normal;
+    line-height: 1.3;
+    margin-top: 7px;
+}
+
+/* FIXED FOOTER */
+
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 42px;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+}
+
+footer p {
+    font-size: 10px;
+    letter-spacing: 3px;
+    font-weight: bold;
+}
+
+/* MOBILE */
+
+@media (max-width: 650px) {
+    header {
+        height: 58px;
+        padding: 0 17px;
+    }
+
+    main {
+        padding: 88px 14px 85px;
+    }
+
+    .page-title h1 {
+        font-size: 19px;
+    }
+
+    .gallery {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        column-gap: 12px;
+        row-gap: 38px;
+    }
+
+    .work h2 {
+        font-size: 14px;
+    }
+
+    footer {
+        height: 38px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <a class="logo" href="index.html">
+        <img src="par-logo.png" alt="PAR">
+    </a>
+
+    <div class="menu-button" onclick="toggleMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+    <nav class="menu" id="menu">
+        <a href="index.html">Home</a>
+        <a href="projects.html">Personal Projects</a>
+        <a href="events.html">Events</a>
+        <a href="theatre.html">Theater</a>
+        <a href="music.html">Music</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+</header>
+
+<main>
+
+    <div class="page-title">
+        <h1>Theater Collection</h1>
+        <div></div>
+    </div>
+
+    <section class="gallery">
+
+        <article class="work">
+            <div class="work-image">
+                <img src="images/theatre-1.jpg" alt="Chaos Particles">
+            </div>
+            <h2>Chaos Particles</h2>
+        </article>
+
+        <article class="work">
+            <div class="work-image">
+                <img src="images/theatre-2.jpg" alt="Star">
+            </div>
+            <h2>Star</h2>
+        </article>
+
+        <article class="work">
+            <div class="work-image">
+                <img src="images/theatre-3.jpg" alt="Killer Green">
+            </div>
+            <h2>Killer Green</h2>
+        </article>
+
+        <article class="work">
+            <div class="work-image">
+                <img src="images/theatre-4.jpg" alt="Controversy over the shadow of a donkey">
+            </div>
+            <h2>Controversy over the shadow of a donkey</h2>
+        </article>
+
+        <article class="work">
+            <div class="work-image">
+                <img src="images/theatre-5.jpg" alt="Ramulus The Great">
+            </div>
+            <h2>Ramulus The Great</h2>
+        </article>
+
+    </section>
+
+</main>
+
+<footer>
+    <p>PANIZ REFAGHATI</p>
+</footer>
+
+<script>
+function toggleMenu() {
+    document.getElementById("menu").classList.toggle("open");
+}
+</script>
+
+</body>
+</html>
