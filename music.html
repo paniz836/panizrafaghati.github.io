@@ -1,0 +1,265 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>PAR | Music Collection</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'DM Sans', sans-serif;
+    background: #fff;
+    color: #111;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 68px;
+    padding: 0 30px;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 100;
+}
+
+.logo img {
+    width: 43px;
+    height: auto;
+    display: block;
+}
+
+.menu-button {
+    width: 28px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.menu-button span {
+    display: block;
+    width: 100%;
+    height: 1.5px;
+    background: #111;
+}
+
+.menu {
+    display: none;
+    position: absolute;
+    top: 68px;
+    right: 30px;
+    background: white;
+    border: 1px solid #ddd;
+    padding: 18px 25px;
+    min-width: 190px;
+}
+
+.menu a {
+    display: block;
+    text-decoration: none;
+    color: #111;
+    font-size: 14px;
+    padding: 10px 0;
+}
+
+.menu.show {
+    display: block;
+}
+
+main {
+    max-width: 1500px;
+    margin: 0 auto;
+    padding: 112px 28px 100px;
+}
+
+h1 {
+    text-align: center;
+    font-size: 23px;
+    font-weight: 400;
+    letter-spacing: 1px;
+}
+
+.title-line {
+    width: 76px;
+    height: 1px;
+    background: #111;
+    margin: 17px auto 42px;
+}
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 48px 30px;
+    max-width: 850px;
+    margin: 0 auto;
+}
+
+.gallery-item {
+    text-align: center;
+}
+
+.photo-frame {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    border: 0.7px solid #777;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.photo-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+.gallery-item p {
+    margin-top: 15px;
+    font-size: 16px;
+    font-weight: 400;
+    letter-spacing: 0.2px;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 48px;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+}
+
+footer p {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 10px;
+    letter-spacing: 3.5px;
+    font-weight: 400;
+}
+
+@media (max-width: 600px) {
+    header {
+        height: 60px;
+        padding: 0 18px;
+    }
+
+    .logo img {
+        width: 40px;
+    }
+
+    .menu {
+        top: 60px;
+        right: 18px;
+    }
+
+    main {
+        padding: 91px 16px 85px;
+    }
+
+    h1 {
+        font-size: 20px;
+    }
+
+    .title-line {
+        margin-bottom: 34px;
+    }
+
+    .gallery {
+        gap: 30px 13px;
+    }
+
+    .gallery-item p {
+        font-size: 14px;
+        margin-top: 12px;
+    }
+
+    footer {
+        height: 42px;
+    }
+
+    footer p {
+        font-size: 9px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <a class="logo" href="index.html">
+        <img src="par-logo.png" alt="PAR Logo">
+    </a>
+
+    <div class="menu-button" onclick="toggleMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+    <nav class="menu" id="menu">
+        <a href="index.html">Home</a>
+        <a href="projects.html">Personal Projects</a>
+        <a href="events.html">Events</a>
+        <a href="theatre.html">Theater</a>
+        <a href="music.html">Music</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+</header>
+
+<main>
+    <h1>Music Collection</h1>
+    <div class="title-line"></div>
+
+    <section class="gallery">
+
+        <div class="gallery-item">
+            <div class="photo-frame">
+                <img src="images/music-1.jpg" alt="Salar Aghili">
+            </div>
+            <p>Salar Aghili</p>
+        </div>
+
+        <div class="gallery-item">
+            <div class="photo-frame">
+                <img src="images/music-2.jpg" alt="Iranian and Indian">
+            </div>
+            <p>Iranian and Indian</p>
+        </div>
+
+    </section>
+</main>
+
+<footer>
+    <p>PANIZ RAFAGHATI</p>
+</footer>
+
+<script>
+function toggleMenu() {
+    document.getElementById("menu").classList.toggle("show");
+}
+</script>
+
+</body>
+</html>
